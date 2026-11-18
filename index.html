@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mô phỏng Phương pháp luận Lập trình Mã nguồn mở (OSS Methodology)</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-icon">⌘</div>
+      <div class="brand-text">
+        <h1>OSS Methodology Explorer & Simulator</h1>
+        <p>Bản demo tương tác phương pháp luận phát triển phần mềm mã nguồn mở</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-oss">🌐 Web Interactive Demo</span>
+      <span class="badge badge-status">● Live Engine</span>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs-wrapper">
+    <button class="nav-tab active" data-target="tab-lifecycle">
+      <span class="tab-icon">🔄</span> Chu trình 7 bước (Lifecycle)
+    </button>
+    <button class="nav-tab" data-target="tab-git-graph">
+      <span class="tab-icon">🌿</span> Sơ đồ Git Topology
+    </button>
+    <button class="nav-tab" data-target="tab-pr-review">
+      <span class="tab-icon">🕵️</span> Phòng duyệt PR (Code Review)
+    </button>
+    <button class="nav-tab" data-target="tab-licensing">
+      <span class="tab-icon">⚖️</span> Giấy phép Bản quyền (Licenses)
+    </button>
+    <button class="nav-tab" data-target="tab-semver">
+      <span class="tab-icon">🏷️</span> SemVer & Conventional Commits
+    </button>
+    <button class="nav-tab" data-target="tab-governance">
+      <span class="tab-icon">🏛️</span> Triết lý & Quản trị OSS
+    </button>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- ====================================================================
+         TAB 1: CONTRIBUTION LIFECYCLE 7-STEP SIMULATOR
+         ==================================================================== -->
+    <section id="tab-lifecycle" class="tab-pane active">
+      <div class="hero-banner">
+        <h2 class="hero-title">Vòng đời Đóng góp Mã nguồn mở Chuẩn</h2>
+        <p class="hero-desc">
+          Khám phá và trải nghiệm từng chặng trong hành trình của một Open Source Contributor: từ tìm kiếm Good First Issue, thiết lập Fork/Remote, tuân thủ tiêu chuẩn code, vượt qua CI Quality Gates cho đến khi được Maintainer Squash & Merge vào nhánh chính.
+        </p>
+      </div>
+
+      <!-- Horizontal Stepper -->
+      <div id="lifecycle-stepper" class="lifecycle-stepper">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+      <!-- Simulation Workspace -->
+      <div class="sim-workspace">
+        <!-- Left: Stage Guidance & Best Practices -->
+        <div class="sim-pane">
+          <div class="sim-stage-header">
+            <div>
+              <div id="sim-stage-title" class="sim-stage-title">Đang tải chặng...</div>
+              <div id="sim-stage-subtitle" class="sim-stage-subtitle">...</div>
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 1rem;">
+            <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--accent-blue);">💡 Nguyên tắc cốt lõi & Hướng dẫn:</h4>
+            <div id="sim-stage-guidelines" style="font-size: 0.88rem; color: var(--text-primary); line-height: 1.7;">
+              <!-- Inserted via JS -->
+            </div>
+          </div>
+
+          <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; gap: 10px;">
+            <button id="btn-prev-stage" class="btn btn-secondary">⬅️ Bước trước</button>
+            <button id="btn-next-stage" class="btn btn-primary" style="flex: 1;">Bước tiếp theo ➡️</button>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Terminal Simulation -->
+        <div class="sim-pane">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">MÔ PHỎNG CLI & TERMINAL</span>
+            <button id="btn-run-cmd" class="btn btn-accent btn-sm">▶️ Thực thi lệnh mô phỏng</button>
+          </div>
+
+          <div style="background: var(--bg-tertiary); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-bottom: 0.75rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">Lệnh đề xuất (CLI syntax):</div>
+            <pre id="sim-suggested-cmd" style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan); white-space: pre-wrap; margin: 0;"></pre>
+          </div>
+
+          <div class="terminal-box">
+            <div class="terminal-header">
+              <div class="terminal-dot red"></div>
+              <div class="terminal-dot yellow"></div>
+              <div class="terminal-dot green"></div>
+              <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;">bash — oss-workspace</span>
+            </div>
+            <div id="terminal-content">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 2: GIT GRAPH TOPOLOGY VISUALIZER
+         ==================================================================== -->
+    <section id="tab-git-graph" class="tab-pane">
+      <div class="hero-banner">
+        <h2 class="hero-title">Trực quan hóa Cấu trúc Phân nhánh Git trong OSS</h2>
+        <p class="hero-desc">
+          Mô hình phát triển mã nguồn mở sử dụng kiến trúc phân tán (Distributed VCS). Repository chính (Upstream) được bảo vệ nghiêm ngặt. Người đóng góp (Contributor) không có quyền ghi trực tiếp, mà đẩy vào Fork cá nhân (Origin) và gửi lời yêu cầu hợp nhất (Pull Request).
+        </p>
+      </div>
+
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+          <span style="font-weight: 600; font-size: 0.9rem; margin-right: 10px;">Thao tác Git Flow:</span>
+          <button id="git-action-fork" class="btn btn-secondary btn-sm">🍴 1. Fork Repository</button>
+          <button id="git-action-branch" class="btn btn-secondary btn-sm">🌿 2. Checkout Feature Branch</button>
+          <button id="git-action-commit" class="btn btn-secondary btn-sm">💾 3. Commit Code Mới</button>
+          <button id="git-action-pr" class="btn btn-secondary btn-sm">🚀 4. Open Pull Request</button>
+          <button id="git-action-merge" class="btn btn-primary btn-sm">🔀 5. Squash & Merge (Maintainer)</button>
+          <button id="git-action-reset" class="btn btn-danger btn-sm" style="margin-left: auto;">↺ Reset Sơ đồ</button>
+        </div>
+      </div>
+
+      <div class="git-graph-container">
+        <svg id="git-svg" class="git-svg-canvas"></svg>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h4 style="color: var(--accent-blue); margin-bottom: 8px;">1. Upstream (main)</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Kho mã nguồn gốc thuộc tổ chức/maintainer. Nhánh main luôn được bảo vệ (Branch Protection Rules), chỉ có thể nạp mã thông qua PR đã qua kiểm thử CI và được phê duyệt (Code Owner review).
+          </p>
+        </div>
+        <div class="card">
+          <h4 style="color: var(--text-primary); margin-bottom: 8px;">2. Origin (Fork)</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Bản sao nằm trên tài khoản GitHub của bạn. Bạn toàn quyền quản lý, tạo nhánh, thử nghiệm mà không gây ảnh hưởng đến cộng đồng cho đến khi sẵn sàng tạo PR.
+          </p>
+        </div>
+        <div class="card">
+          <h4 style="color: var(--accent-purple); margin-bottom: 8px;">3. Feature Branch</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Nhánh riêng biệt chứa một đơn vị công việc độc lập (Atomic unit of work). Giúp dễ dàng rebase, squash, cô lập lỗi và phục hồi nếu xảy ra sự cố.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: PR REVIEW SIMULATOR (MINI-GAME)
+         ==================================================================== -->
+    <section id="tab-pr-review" class="tab-pane">
+      <div class="hero-banner">
+        <h2 class="hero-title">Phòng thí nghiệm Xét duyệt Mã nguồn (PR Review Lab)</h2>
+        <p class="hero-desc">
+          Trong phương pháp luận mã nguồn mở, "Peer Review" là hàng rào quan trọng nhất bảo vệ sự ổn định và an ninh của dự án. Hãy đóng vai trò <strong>Maintainer</strong> để thẩm định Pull Request #142 dưới đây: tìm lỗ hổng bảo mật tiềm ẩn và đưa ra quyết định duyệt chính xác!
+        </p>
+      </div>
+
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span id="pr-status-pill" class="status-pill status-open">Open 🟢</span>
+              <h3 style="font-size: 1.15rem;">feat(user): add endpoint to search user by username #142</h3>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px;">
+              Được gửi bởi <code>@newbie-coder</code> muốn hợp nhất 1 commit vào <code>upstream:main</code> từ <code>newbie:feat/user-search</code>
+            </p>
+          </div>
+          <div>
+            <span class="badge badge-oss">CI: All checks passed (Tests green)</span>
+          </div>
+        </div>
+
+        <!-- Diff Viewer -->
+        <div class="diff-container">
+          <div class="diff-header">
+            <span>📄 src/controllers/userController.js</span>
+            <span style="color: var(--accent-green);">+14 lines, -2 lines</span>
+          </div>
+
+          <div class="diff-row context">
+            <span class="diff-num">1</span><span class="diff-symbol"> </span>
+            <span class="diff-code">const db = require('../database/connection');</span>
+          </div>
+          <div class="diff-row context">
+            <span class="diff-num">2</span><span class="diff-symbol"> </span>
+            <span class="diff-code"></span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">3</span><span class="diff-symbol">+</span>
+            <span class="diff-code">exports.searchUsers = async (req, res) => {</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">4</span><span class="diff-symbol">+</span>
+            <span class="diff-code">  try {</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">5</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    const { username } = req.query;</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">6</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    if (!username) {</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">7</span><span class="diff-symbol">+</span>
+            <span class="diff-code">      return res.status(400).json({ error: 'Username query parameter is required' });</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">8</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    }</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">9</span><span class="diff-symbol">+</span>
+            <span class="diff-code"></span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">10</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    // CẢNH BÁO KIỂM TRA: Hãy rà soát kỹ dòng truy vấn dưới đây!</span>
+          </div>
+          <div class="diff-row addition" style="background-color: rgba(210, 153, 34, 0.15);">
+            <span class="diff-num">11</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    // Execute direct query without parameter binding</span>
+          </div>
+          <div class="diff-row addition" style="background-color: rgba(248, 81, 73, 0.25);">
+            <span class="diff-num">12</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    const query = "SELECT id, username, email FROM users WHERE username = '" + username + "'";</span>
+            <button class="btn btn-secondary btn-sm review-add-comment" data-line="12" style="margin-left: 10px;">💬 Bình luận dòng 12</button>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">13</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    const users = await db.raw(query);</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">14</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    return res.status(200).json({ data: users });</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">15</span><span class="diff-symbol">+</span>
+            <span class="diff-code">  } catch (err) {</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">16</span><span class="diff-symbol">+</span>
+            <span class="diff-code">    return res.status(500).json({ error: 'Internal Server Error' });</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">17</span><span class="diff-symbol">+</span>
+            <span class="diff-code">  }</span>
+          </div>
+          <div class="diff-row addition">
+            <span class="diff-num">18</span><span class="diff-symbol">+</span>
+            <span class="diff-code">};</span>
+          </div>
+        </div>
+
+        <!-- Maintainer Action Panel -->
+        <div style="display: flex; gap: 12px; margin-top: 1rem; align-items: center;">
+          <button id="pr-btn-request-changes" class="btn btn-danger">⚠️ Yêu cầu sửa đổi (Request Changes)</button>
+          <button id="pr-btn-approve" class="btn btn-primary">✅ Phê duyệt & Hợp nhất (Approve & Merge)</button>
+          <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: auto;">💡 Hãy nhấp vào nút "Bình luận dòng 12" trước khi đưa ra phán quyết!</span>
+        </div>
+
+        <!-- Feedback Log -->
+        <div style="margin-top: 1.5rem;">
+          <h4 style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px;">HỘP THOẠI PHẢN HỒI CỦA MAINTAINER & AUDIT:</h4>
+          <div id="pr-feedback-log" class="terminal-box" style="min-height: 120px; max-height: 180px;">
+            <div class="term-line term-dim"># Đang chờ maintainer đọc diff và bình luận...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 4: OPEN SOURCE LICENSING MATRIX
+         ==================================================================== -->
+    <section id="tab-licensing" class="tab-pane">
+      <div class="hero-banner">
+        <h2 class="hero-title">Cây Quyết định Giấy phép Bản quyền (OSS Licenses)</h2>
+        <p class="hero-desc">
+          "Không có giấy phép (No License) đồng nghĩa với việc phần mềm độc quyền và không ai có quyền sử dụng hợp pháp." Giấy phép mã nguồn mở quy định quyền hạn (Permissions), điều kiện (Conditions) và giới hạn (Limitations) khi tái sử dụng mã.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Interactive Decision Selector -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🎯 Bạn mong muốn mã nguồn của mình được dùng như thế nào?</h3>
+          </div>
+          <div class="quiz-step">
+            <button class="quiz-option-btn license-quiz-btn" data-license="mit">
+              <div>
+                <strong>Dễ dãi tối đa (Permissive - Muốn ai cũng dùng được)</strong>
+                <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px;">Cho phép dùng trong sản phẩm thương mại mã đóng, chỉ cần giữ tên tác giả.</p>
+              </div>
+              <span>👉 MIT</span>
+            </button>
+
+            <button class="quiz-option-btn license-quiz-btn" data-license="apache2">
+              <div>
+                <strong>Doanh nghiệp & Bảo vệ Sáng chế (Enterprise & Patents)</strong>
+                <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px;">Permissive kèm cam kết bảo vệ bằng sáng chế (Patent Grant) & cấm dùng nhãn hiệu.</p>
+              </div>
+              <span>👉 Apache 2.0</span>
+            </button>
+
+            <button class="quiz-option-btn license-quiz-btn" data-license="gpl3">
+              <div>
+                <strong>Bảo vệ Tự do vĩnh cửu (Strong Copyleft - Share Alike)</strong>
+                <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px;">Ai dùng/phát triển thêm đều BẮT BUỘC phải mở mã nguồn cùng giấy phép.</p>
+              </div>
+              <span>👉 GPLv3</span>
+            </button>
+
+            <button class="quiz-option-btn license-quiz-btn" data-license="agpl3">
+              <div>
+                <strong>Chống 'SaaS Loophole' (Bảo vệ phần mềm dịch vụ đám mây)</strong>
+                <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px;">Ngăn các ông lớn cloud lấy code chạy hosting kiếm tiền mà không mở mã.</p>
+              </div>
+              <span>👉 AGPLv3</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Result Display Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📋 Chi tiết Điều khoản Giấy phép</h3>
+          </div>
+          <div id="license-result-card">
+            <div style="text-align: center; color: var(--text-muted); padding: 3rem 1rem;">
+              👈 Hãy nhấp chọn một định hướng ở bên trái để xem phân tích chi tiết quyền lợi & nghĩa vụ pháp lý.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 5: SEMVER & CONVENTIONAL COMMITS
+         ==================================================================== -->
+    <section id="tab-semver" class="tab-pane">
+      <div class="hero-banner">
+        <h2 class="hero-title">Đánh số Phiên bản Ngữ nghĩa & Conventional Commits</h2>
+        <p class="hero-desc">
+          Trong tự động hóa DevOps & OSS, việc tuân thủ <strong>Conventional Commits</strong> giúp các công cụ CI/CD (như Semantic-Release, Changesets) tự động phân tích commit, tính toán số phiên bản <code>MAJOR.MINOR.PATCH</code> và sinh file <code>CHANGELOG.md</code> mà không cần con người can thiệp thủ công.
+        </p>
+      </div>
+
+      <div class="sim-workspace">
+        <!-- Interactive Builder -->
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 1rem;">⚙️ Trình tạo Commit & Tính toán Version</h3>
+          
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Commit Type:</label>
+            <select id="commit-type" style="width: 100%; padding: 8px 12px; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: var(--radius-sm);">
+              <option value="feat">feat: Thêm tính năng mới (New Feature)</option>
+              <option value="fix">fix: Vá lỗi (Bug Fix)</option>
+              <option value="perf">perf: Cải thiện hiệu năng (Performance)</option>
+              <option value="refactor">refactor: Tái cấu trúc mã nguồn</option>
+              <option value="docs">docs: Cập nhật tài liệu</option>
+              <option value="chore">chore: Công việc bảo trì nội bộ</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Scope (Tùy chọn, vd: auth, ui, api, database):</label>
+            <input id="commit-scope" type="text" placeholder="auth" value="auth" style="width: 100%; padding: 8px 12px; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: var(--radius-sm);">
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Description (Mô tả ngắn gọn thì hiện tại):</label>
+            <input id="commit-desc" type="text" placeholder="verify JWT expiration timestamp" value="verify JWT expiration timestamp" style="width: 100%; padding: 8px 12px; background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: var(--radius-sm);">
+          </div>
+
+          <div class="checklist-item">
+            <input type="checkbox" id="commit-breaking">
+            <label for="commit-breaking" style="color: var(--accent-red); font-weight: 600; cursor: pointer;">
+              🚨 BREAKING CHANGE (Thay đổi phá vỡ tương thích ngược với API cũ)
+            </label>
+          </div>
+
+          <button id="btn-apply-bump" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+            🚀 Xuất bản Bản phát hành mới (Publish Release)
+          </button>
+        </div>
+
+        <!-- Output & Visualizer -->
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 1rem;">📊 Kết quả Phân tích Tự động hóa CI/CD</h3>
+          
+          <div style="margin-bottom: 1.25rem;">
+            <span style="font-size: 0.8rem; color: var(--text-secondary);">Chuỗi Conventional Commit sinh ra:</span>
+            <div id="preview-commit-msg" style="font-family: var(--font-mono); background: #05070a; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); color: var(--accent-cyan); margin-top: 4px;">
+              feat(auth): verify JWT expiration timestamp
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 1rem;">
+            <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); text-align: center;">
+              <span style="font-size: 0.8rem; color: var(--text-secondary);">Phiên bản Hiện tại</span>
+              <div id="current-version" style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-top: 4px;">v1.2.4</div>
+            </div>
+            <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); text-align: center; border: 1px solid var(--accent-green);">
+              <span style="font-size: 0.8rem; color: var(--accent-green);">Phiên bản Tiếp theo (Next)</span>
+              <div id="next-version" style="font-size: 1.8rem; font-weight: 800; color: var(--accent-green); margin-top: 4px;">v1.3.0</div>
+            </div>
+          </div>
+
+          <div style="background: rgba(88, 166, 255, 0.08); border-left: 3px solid var(--accent-blue); padding: 12px 14px; border-radius: 4px;">
+            <span style="font-weight: 600; font-size: 0.85rem; color: var(--accent-blue);">Quy tắc tự động tính SemVer:</span>
+            <div id="bump-reason" style="font-size: 0.85rem; color: var(--text-primary); margin-top: 4px;">
+              ...
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 6: GOVERNANCE & PRINCIPLES
+         ==================================================================== -->
+    <section id="tab-governance" class="tab-pane">
+      <div class="hero-banner">
+        <h2 class="hero-title">Triết lý & Mô hình Quản trị Mã nguồn mở (Governance)</h2>
+        <p class="hero-desc">
+          Mã nguồn mở không đơn thuần là "mở mã cho mọi người xem", mà là một hệ thống phương pháp luận về tổ chức, quản trị cộng đồng, giao tiếp bất đồng bộ và cơ chế phân quyền bền vững.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title" style="color: var(--accent-blue);">🏛️ Nhà thờ vs Chợ trời (Cathedral vs Bazaar)</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.5rem 0 1rem 0;">
+            Luận điểm kinh điển của Eric S. Raymond trong tác phẩm <em>"The Cathedral and the Bazaar"</em> (1999):
+          </p>
+          <ul style="padding-left: 1.25rem; font-size: 0.88rem; line-height: 1.8; color: var(--text-primary);">
+            <li><strong>Mô hình Nhà thờ (Cathedral)</strong>: Phát triển khép kín bởi một nhóm tinh hoa biệt lập giữa các đợt phát hành chậm chạp.</li>
+            <li><strong>Mô hình Chợ trời (Bazaar)</strong>: Phát hành sớm, phát hành thường xuyên (<em>Release early, release often</em>), đón nhận đóng góp công khai từ toàn thế giới.</li>
+            <li><strong>Định luật Linus (Linus's Law)</strong>: <em>"Given enough eyeballs, all bugs are shallow"</em> (Khi có đủ nhiều cặp mắt cùng nhìn vào, mọi lỗi đều trở nên nông).</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title" style="color: var(--accent-purple);">👥 Các Mô hình Quản trị Cộng đồng (Governance Models)</h3>
+          <ul style="padding-left: 1.25rem; font-size: 0.88rem; line-height: 1.8; color: var(--text-primary); margin-top: 0.5rem;">
+            <li><strong>BDFL (Benevolent Dictator For Life)</strong>: Nhà sáng lập giữ quyền phủ quyết tối cao (vd: Linus Torvalds với Linux, Guido van Rossum với Python trước đây).</li>
+            <li><strong>Meritocracy (Trọng dụng thực tài)</strong>: Quyền quyết định tăng dần theo mức độ đóng góp giá trị (Mô hình Apache Software Foundation).</li>
+            <li><strong>Do-ocracy (Ai làm người đó quyết)</strong>: Người thực sự bắt tay vào viết code và giải quyết vấn đề sẽ có quyền quyết định giải pháp đó.</li>
+            <li><strong>Foundation / Multi-stakeholder</strong>: Được quản trị bởi một tổ chức phi lợi nhuận độc lập với hội đồng kỹ thuật (vd: CNCF, Linux Foundation).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title" style="margin-bottom: 1rem;">🪜 Thang Bậc Vai Trò Trong Dự Án Mã Nguồn Mở</h3>
+        <div class="grid-4">
+          <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); border-top: 3px solid #6e7681;">
+            <strong style="color: #c9d1d9;">1. User (Người dùng)</strong>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Sử dụng phần mềm, báo cáo lỗi (Bug Report), đóng góp ý tưởng phát triển.</p>
+          </div>
+          <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); border-top: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--accent-cyan);">2. Contributor</strong>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Gửi Pull Request sửa lỗi, dịch thuật ngữ, viết tài liệu hoặc test case.</p>
+          </div>
+          <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); border-top: 3px solid var(--accent-blue);">
+            <strong style="color: var(--accent-blue);">3. Maintainer / Committer</strong>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Có quyền ghi (Write Access), xét duyệt PR, quản lý Issue, điều phối định hướng.</p>
+          </div>
+          <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm); border-top: 3px solid var(--accent-purple);">
+            <strong style="color: var(--accent-purple);">4. Owner / Core TSC</strong>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Thành viên Hội đồng Kỹ thuật, quản lý bảo mật (CVE), quyền xuất bản bản phát hành.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Demo Phương pháp luận Lập trình Mã nguồn mở & DevOps • Triển khai bằng Công nghệ HTML5 / CSS3 / JavaScript nguyên bản</p>
+    <p style="margin-top: 6px; font-size: 0.78rem;">Thiết kế cho môi trường học tập, thực hành và trình diễn quy trình chuẩn Open Source Software (OSS)</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
